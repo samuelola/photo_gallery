@@ -27,14 +27,19 @@
 
 
 
-                   $result_set = User::find_all_users();
+                   // $users = User::find_all_users();
 
-                   while ($row = mysqli_fetch_assoc($result_set)) {
+                   // foreach ($users as $user) {
                      
-                      echo $row['username'] . "<br/>";
-                   }
+                   //     echo $user->username ."<br>";
+                   // }
 
-                   $user = User::find_user_by_id(1);
+                   // while ($row = mysqli_fetch_assoc($result_set)) {
+                     
+                   //    echo $row['username'] . "<br/>";
+                   // }
+
+                   // $user = User::find_user_by_id(1);
                    
                    // $jide = User::instantiation($user);
 
@@ -43,6 +48,11 @@
                    // $sammy = User::instantiation();
 
                    // echo $sammy->id;
+
+
+                   $user = User::find_user_by_id(2);
+
+                   echo $user->username;
                    
                  ?>
 

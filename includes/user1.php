@@ -24,24 +24,11 @@ class User{
 
 	public static function find_user_by_id($id){
 
-		$the_result_array  =  self::find_this_query("SELECT * FROM users WHERE id = '$id'");
+		$the_result =  self::find_this_query("SELECT * FROM users WHERE id = '$id'");
 
-		// if(!empty($the_result_array )){
-           
-  //          $first_item = array_shift($the_result_array);
+		$found_user = mysqli_fetch_assoc($the_result);
 
-  //          return $first_item;
-
-		// }
-		// else{
-
-		// 	return false;
-		// }
-
-        return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
-        
-		// return $found_user;
+		return $found_user;
 	}
 
 	public static function find_this_query($sql){
@@ -50,20 +37,11 @@ class User{
 
       $result = $database->myquery($sql);
 
-      $the_object_array = [];
-
-      while ($row = mysqli_fetch_assoc($result)) {
-      	
-      	  $the_object_array[] = self::instantiation($row);
-      }
-
-
-
-      return  $the_object_array;
+      return $result;
 
 	}
 
-    public static  function instantiation($the_values){
+    private static  function instantiation($found_user){
            
 	       $the_object = new self;
 	       // $the_object->id =  $found_user['id'];
@@ -72,11 +50,11 @@ class User{
 	       // $the_object->first_name =  $found_user['first_name'];
 	       // $the_object->last_name =  $found_user['last_name'];
 
-	       foreach ($the_values as $the_attribute => $value) {
+	       foreach ($found_user as $the_attribute => $value) {
 	       	
 	       	   if($the_object->has_the_attribute($the_attribute)){
                   
-                    $the_object->$the_attribute = $value;
+                    $the_object->the_attribute = $value;
 
 	       	   }
 	       }
