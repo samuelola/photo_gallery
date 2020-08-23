@@ -15,47 +15,9 @@
                 
                 <?php 
                     
-                   // $user = new User;
+                   $sam = User::find_user_by_id($user_id);
 
-                   // $result_set = $user->find_all_users();
-
-                   // while ($row = mysqli_fetch_assoc($result_set)) {
-                     
-                   //    echo $row['username'] . "<br/>";
-                   // }
-
-
-
-
-                   // $users = User::find_all_users();
-
-                   // foreach ($users as $user) {
-                     
-                   //     echo $user->username ."<br>";
-                   // }
-
-                   // while ($row = mysqli_fetch_assoc($result_set)) {
-                     
-                   //    echo $row['username'] . "<br/>";
-                   // }
-
-                   // $user = User::find_user_by_id(1);
-                   
-                   // $jide = User::instantiation($user);
-
-                   // echo $jide->id;
-
-                   // $sammy = User::instantiation();
-
-                   // echo $sammy->id;
-
-
-                   $user = User::find_user_by_id(2);
-
-                   echo $user->username;
-
-
-                   // $photo = new Photo();
+                  echo  $sam->username;
                    
                  ?>
 
@@ -67,6 +29,38 @@
                 </li>
             </ol>
         </div>
+
+        
+          
+             <div class="container">
+                
+                <?php
+                  
+                   // $user = new User();
+
+                   // $user->username = "testing";
+                   // $user->password = "testingpassword";
+                   // $user->first_name = "testingfirstname";
+                   // $user->last_name = "testinglastname";
+
+                   // $user->create();
+
+
+                   // $user  = User::find_user_by_id(3);
+
+                   // $user->last_name = "ire";
+
+                   // $user->update();
+
+
+                    $user = User::find_user_by_id(5);
+
+                    $user->delete();
+
+                 ?> 
+
+             </div>
+        
     </div>
     <!-- /.row -->
 

@@ -20,7 +20,7 @@
                     <a href="#">Services</a>
                 </li>
                 <li>
-                    <a href="/oop/admin">Admin</a>
+                    <a href="/oop/admin/index.php">Admin</a>
                 </li>
             </ul>
         </div>

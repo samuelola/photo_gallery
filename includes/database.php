@@ -45,13 +45,13 @@ class Database{
 
 	public function escape_the_string($string){
 
-       return $this->conn->real_esacpe_string($string);
+       return $this->conn->real_escape_string($string);
 	}
 
 
 	public function the_insert_id(){
 
-		return $conn->insert_id;
+		return $this->conn->insert_id;
 	}
 
 }

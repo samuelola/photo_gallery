@@ -1,7 +1,8 @@
 <?php 
 
 class User{
-
+	
+    public $id;
 	public $username;
 	public $password;
 	public $first_name;
@@ -113,6 +114,51 @@ class User{
 
        return array_key_exists($the_attribute, $object_properties); 
 
+    }
+
+
+    public function create(){
+
+    	global $database;
+
+    $sql = "INSERT INTO users (username,password,first_name,last_name) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."')";
+        
+        $the_result = $database->myquery($sql);
+
+        if($the_result){
+
+        	$this->id = $database->the_insert_id();
+
+        	return true;
+        }
+        else{
+
+        	return false;
+        }
+    }
+
+
+    public function update(){
+
+    	global $database;
+
+    	$sql = "UPDATE users SET username = '".$database->escape_the_string($this->username)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."' WHERE id = '".$database->escape_the_string($this->id)."'";
+
+    	$database->myquery($sql);
+
+        return  (mysqli_affected_rows($database->conn) == 1) ? true : false;
+    }
+
+
+    public function delete(){
+
+    	global $database;
+
+    	$sql = "DELETE FROM users WHERE id = '".$this->id."' LIMIT 1";
+
+    	$database->myquery($sql);
+
+    	return mysqli_affected_rows($database->conn) == 1 ? true : false;
     }
 
 

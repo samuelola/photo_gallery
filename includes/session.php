@@ -2,14 +2,15 @@
 
 class Session{
 
-  private $sign_in = false;
+  
 
   public $user_id;	
 
+  public $message;
+
   function __construct(){
 
-  	  session_start();
-  	  $this->check_the_login();
+  	 $this->check_message();
   }
 
 
@@ -26,32 +27,55 @@ class Session{
 
          $this->user_id = $_SESSION['user_id'] = $user->id; 
 
-         $this->sign_in = true;
+         
      }
   }
 
 
-  public function logout(){
+  public function message ($msg =""){
 
-  	  unset($_SESSION['user_id']);
-  	  unset($this->user_id);
-  	  $this->sign_in = false;
+     if(!empty($msg)){
+         
+         $_SESSION['message'] = $msg;
+     }
+     else{
+
+     	return $this->message="";
+     }
+
+  }
+
+  private function check_message(){
+
+  	 if(isset($_SESSION['message'])){
+
+  	 	$this->message = $_SESSION['message'];
+  	 	unset($_SESSION['message']);
+
+  	 }
+  	 else{
+
+  	 	$this->message = "";
+  	 }
   }
 
 
-  private function check_the_login(){
 
-       if(isset($_SESSION['user_id'])){
+
+
+  // private function check_the_login(){
+
+  //      if(isset($_SESSION['user_id'])){
            
-             $this->user_id = $_SESSION['user_id'];
-             $this->sign_in = true;
-       }
-       else{
+  //            $this->user_id = $_SESSION['user_id'];
+  //            $this->sign_in = true;
+  //      }
+  //      else{
 
-       	  unset($this->user_id);
-       	  $this->sign_in = false;
-       }
-  }
+  //      	  unset($this->user_id);
+  //      	  $this->sign_in = false;
+  //      }
+  // }
 
 }
 
