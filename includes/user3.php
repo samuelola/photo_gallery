@@ -2,8 +2,7 @@
 
 class User{
 	
-  protected static $db_table = "users";
-  public $id;
+    public $id;
 	public $username;
 	public $password;
 	public $first_name;
@@ -73,7 +72,7 @@ class User{
   	  $username = $database->escape_the_string($username);
   	  $password = $database->escape_the_string($password);
 
-  	  $sql = "SELECT * FROM " .self::$db_table. " WHERE ";
+  	  $sql = "SELECT * FROM users WHERE ";
   	  $sql .= "username =  '{$username}' ";
   	  $sql .= "AND password = '{$password}' ";
   	  $sql .= "LIMIT 1";
@@ -122,7 +121,7 @@ class User{
 
     	global $database;
 
-    $sql = "INSERT INTO " .self::$db_table. " (username,password,first_name,last_name) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."')";
+    $sql = "INSERT INTO users (username,password,first_name,last_name) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."')";
         
         $the_result = $database->myquery($sql);
 
@@ -143,7 +142,7 @@ class User{
 
     	global $database;
 
-    	$sql = "UPDATE " .self::$db_table. " SET username = '".$database->escape_the_string($this->username)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."' WHERE id = '".$database->escape_the_string($this->id)."'";
+    	$sql = "UPDATE users SET username = '".$database->escape_the_string($this->username)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."' WHERE id = '".$database->escape_the_string($this->id)."'";
 
     	$database->myquery($sql);
 
@@ -155,17 +154,11 @@ class User{
 
     	global $database;
 
-    	$sql = "DELETE FROM " .self::$db_table. " WHERE id = '".$this->id."' LIMIT 1";
+    	$sql = "DELETE FROM users WHERE id = '".$this->id."' LIMIT 1";
 
     	$database->myquery($sql);
 
     	return mysqli_affected_rows($database->conn) == 1 ? true : false;
-    }
-
-
-    public function save(){
-
-        return isset($this->id) ? $this->update() : $this->create();
     }
 
 

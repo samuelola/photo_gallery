@@ -14,10 +14,17 @@
 
                 
                 <?php 
-                    
-                   $sam = User::find_user_by_id($user_id);
+                  
+                  // $user = User::find_user_by_id(8);
+                  // $user->delete();
 
-                  echo  $sam->username;
+                   $user = User::find_user_by_id(9);
+
+                   $user->username = 'johnnyyyyyyyyyyyyy';
+
+                   $user->save();
+
+
                    
                  ?>
 
@@ -53,9 +60,11 @@
                    // $user->update();
 
 
-                    $user = User::find_user_by_id(5);
+                    $user = User::find_user_by_id(3);
 
-                    $user->delete();
+                    $user->first_name = "ireoluwa";
+
+                    $user->save();
 
                  ?> 
 
