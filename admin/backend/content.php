@@ -12,21 +12,7 @@
             </h1>
             <ol class="breadcrumb">
 
-                
-                <?php 
-                  
-                  // $user = User::find_user_by_id(8);
-                  // $user->delete();
-
-                   $user = User::find_user_by_id(9);
-
-                   $user->username = 'johnnyyyyyyyyyyyyy';
-
-                   $user->save();
-
-
-                   
-                 ?>
+               
 
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
@@ -34,42 +20,32 @@
                 <li class="active">
                     <i class="fa fa-file"></i> Blank Page
                 </li>
+
+                <?php
+                  
+                  // $photos = Photo::find_all();
+
+                  // foreach ($photos as $photo) {
+                    
+                  //    echo $photo->title;
+                  // }
+
+                   // $photo = new Photo();
+
+                   // $photo->title = "Example1";
+                   // $photo->description = "Example photo";
+                   // $photo->filename = "example.jpg";
+                   // $photo->type = "example1";
+                   // $photo->size = 1;
+
+                   // $photo->create_photo();
+                ?>
             </ol>
         </div>
 
         
           
-             <div class="container">
-                
-                <?php
-                  
-                   // $user = new User();
-
-                   // $user->username = "testing";
-                   // $user->password = "testingpassword";
-                   // $user->first_name = "testingfirstname";
-                   // $user->last_name = "testinglastname";
-
-                   // $user->create();
-
-
-                   // $user  = User::find_user_by_id(3);
-
-                   // $user->last_name = "ire";
-
-                   // $user->update();
-
-
-                    $user = User::find_user_by_id(3);
-
-                    $user->first_name = "ireoluwa";
-
-                    $user->save();
-
-                 ?> 
-
-             </div>
-        
+         
     </div>
     <!-- /.row -->
 

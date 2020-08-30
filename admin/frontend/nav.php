@@ -18,7 +18,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
 
             <?php
-              $the_user = User::find_user_by_id($user_id);
+              $the_user = User::find_by_id($user_id);
               echo $the_user->username;
             ?> 
 
