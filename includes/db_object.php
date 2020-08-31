@@ -10,25 +10,22 @@ class Db_object {
 
 		public static function find_by_id($id){
 
-			$the_result_array  =  static::find_this_query("SELECT * FROM " .static::$db_table. "  WHERE id = '$id'");
-
-			// if(!empty($the_result_array )){
-	           
-	  //          $first_item = array_shift($the_result_array);
-
-	  //          return $first_item;
-
-			// }
-			// else{
-
-			// 	return false;
-			// }
+			$the_result_array  =  static::find_this_query("SELECT * FROM " .static::$db_table. "  WHERE id  = '$id'");
 
 	        return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
 	        
-			// return $found_user;
 		}
+
+		// public static function find_photo_by_id($id){
+
+		// 	$the_result_array  =  static::find_this_query("SELECT * FROM " .static::$db_table. "  WHERE photo_id = '$id'");
+
+	 //        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+	        
+		// }
+
 
 		public static function find_this_query($sql){
 	      
@@ -129,7 +126,7 @@ class Db_object {
       move_uploaded_file( $this->tmp_path,"../images/$this->filename");
    
 
-    $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."')";
+    $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size,caption) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."','".$database->escape_the_string($this->caption)."')";
         
         $the_result = $database->myquery($sql);
 
@@ -153,12 +150,25 @@ class Db_object {
 
     	global $database;
 
-    	$sql = "UPDATE " .static::$db_table. " SET username = '".$database->escape_the_string($this->username)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."' WHERE id = '".$database->escape_the_string($this->id)."'";
+    	$sql = "UPDATE " .static::$db_table. " SET username = '".$database->escape_the_string($this->username)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."' WHERE id  = '".$database->escape_the_string($this->id)."'";
 
     	$database->myquery($sql);
 
         return  (mysqli_affected_rows($database->conn) == 1) ? true : false;
     }
+
+    public function update_photo(){
+
+    	global $database;
+
+    	$sql = "UPDATE " .static::$db_table. " SET title = '".$database->escape_the_string($this->title)."', description = '".$database->escape_the_string($this->description)."', filename = '".$database->escape_the_string($this->filename)."',type = '".$database->escape_the_string($this->type)."',size = '".$database->escape_the_string($this->size)."' ,caption = '".$database->escape_the_string($this->caption)."' WHERE id  = '".$database->escape_the_string($this->id)."'";
+
+    	$database->myquery($sql);
+
+        return  (mysqli_affected_rows($database->conn) == 1) ? true : false;
+    }
+
+
 
 
     public function delete(){
@@ -178,6 +188,8 @@ class Db_object {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
+
+    
 
 }
 

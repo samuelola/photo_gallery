@@ -5,13 +5,14 @@
 class Photo extends Db_object{
 
     protected static $db_table = "photos";
-    public $photo_id;
-	public $title;
-	public $description;
-	public $filename;
-	public $type;
-	public $size;
-	public $tmp_path;
+    public $id;
+  	public $title;
+  	public $description;
+  	public $filename;
+  	public $type;
+  	public $size;
+    public $caption;
+  	public $tmp_path;
     public $custom_error = [];
     public $upload_error = [
 

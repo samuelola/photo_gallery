@@ -34,6 +34,16 @@
                      include 'backend/photos.php';
                  }
 
+                 if(isset($_GET['delete_photo'])){
+
+                     include 'backend/delete_photo.php';
+                 }
+
+                 if(isset($_GET['edit_photo'])){
+
+                     include 'backend/edit_photo.php';
+                 }
+
 
 
              ?>

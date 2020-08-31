@@ -1,24 +1,24 @@
 <?php 
 
 
-// function classAutoLoader($class){
+function classAutoLoader($class){
 
-//    $class = strtolower($class);
+   $class = strtolower($class);
 
-//    $path = "../includes/{$class}.php";
+   $path = "../includes/{$class}.php";
 
-//    if(file_exists($path)){
+   if(file_exists($path)){
      
-//         require_once($path);
-//    }
-//    else{
+        require_once($path);
+   }
+   else{
 
-//    	  die("This file name {$class}.php was not found");
-//    }
-// }
+   	  die("This file name {$class}.php was not found");
+   }
+}
 
 
-// spl_autoload_register("classAutoLoader");
+spl_autoload_register("classAutoLoader");
 
 
 function redirect($location){

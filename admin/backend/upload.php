@@ -11,6 +11,7 @@ if(isset($_POST['add_photo'])){
 
     $photo->title = $_POST['title'];
     $photo->description = $_POST['description'];
+    $photo->caption = $_POST['caption'];
     $photo->filename = $_FILES['uploaded_file']['name'];
     $photo->tmp_path = $_FILES['uploaded_file']['tmp_name'];
     $photo->type = $_FILES['uploaded_file']['type'];
@@ -41,10 +42,12 @@ if(isset($_POST['add_photo'])){
                 <form action="" method="post" enctype="multipart/form-data">
                     
                     <div class="form-group">
+                         <label for="">Title:</label>
                         <input type="text" name="title" class="form-control">
                     </div>
 
                      <div class="form-group">
+                         <label for="">Photo:</label>
                         <input type="file" name="uploaded_file">
                     </div>
 
