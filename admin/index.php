@@ -44,6 +44,21 @@
                      include 'backend/edit_photo.php';
                  }
 
+                 if(isset($_GET['add_user'])){
+
+                     include 'backend/add_user.php';
+                 }
+
+                 if(isset($_GET['edit_user'])){
+
+                     include 'backend/edit_user.php';
+                 }
+
+                  if(isset($_GET['delete_user'])){
+
+                     include 'backend/delete_user.php';
+                 }
+
 
 
              ?>

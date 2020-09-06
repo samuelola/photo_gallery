@@ -52,7 +52,7 @@ if(isset($_POST['update'])){
                    </div>
 
                    <div class="form-group">
-                      <a class="thumbnail" href=""><img class="the_img" src="../images/<?php echo $photo->filename ?>" alt=""></a>
+                      <a  href=""><img class="thumbnail" src="../images/<?php echo $photo->filename ?>" alt=""></a>
                    </div>
                    
                     <div class="form-group">

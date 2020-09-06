@@ -1,5 +1,5 @@
 <div class="container-fluid">
-
+  
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
@@ -7,20 +7,7 @@
                 Photos
                 
             </h1>
-           <?php
-
-               // if(isset($_SESSION['msg'])){
-                 
-               //     echo $_SESSION['msg'];
-               // } 
-               // elseif($_SESSION['msg'] = ''){
-
-               //     unset($_SESSION['msg']);
-               // }
-
-              
-
-           ?>
+      
             <div class="col-md-12">
                 <table class="table table-responsive table-striped">
                      <thead>
@@ -38,7 +25,7 @@
                      <tbody>
 
                         <?php
-
+                      $user_id = $_SESSION['user_id'];
                         $photos = Photo::find_all();
 
                         $sn = 0;
@@ -55,7 +42,7 @@
                               <div class="pictures_link">
                                   <a class="del" href="backend/delete_photo.php?delete_photo=<?php echo $photo->id ?>">Delete</a>
                                   <a href="index.php?edit_photo&edit_photo=<?php echo $photo->id ?>">Edit</a>
-                                  <a href="#">View</a>
+                                  <a href="../photo.php?user_id=<?php echo $user_id ?>&id=<?php echo $photo->id ?>">Comment Here</a>
                               </div>
                              </td>
                              <td><?php echo $photo->title ?></td>

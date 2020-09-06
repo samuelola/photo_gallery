@@ -17,6 +17,26 @@ class Db_object {
 	        
 		}
 
+		public static function find_comment_by_id($id){
+
+			$the_result_array  =  static::find_this_query("SELECT * FROM " .static::$db_table. "  WHERE photo_id  = '$id'");
+
+
+	        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+	        
+		}
+
+		public static function find_comment_by_id_user($user_id){
+
+			$the_result_array  =  static::find_this_query("SELECT * FROM " .static::$db_table. "  WHERE user_id  = '$user_id' ");
+
+
+	        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+	        
+		}
+
 		// public static function find_photo_by_id($id){
 
 		// 	$the_result_array  =  static::find_this_query("SELECT * FROM " .static::$db_table. "  WHERE photo_id = '$id'");
@@ -100,7 +120,9 @@ class Db_object {
 
     	global $database;
 
-    $sql = "INSERT INTO " .static::$db_table. " (username,password,first_name,last_name) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."')";
+    	 move_uploaded_file( $this->tmp_user_path,"../users/$this->user_image");
+
+    $sql = "INSERT INTO " .static::$db_table. " (username,email,password,first_name,last_name,user_image) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->email)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."','".$database->escape_the_string($this->user_image)."')";
         
         $the_result = $database->myquery($sql);
 
@@ -145,12 +167,35 @@ class Db_object {
     }
 
 
+       public function create_comment(){
+
+    	global $database;   
+
+    $sql = "INSERT INTO " .static::$db_table. " (photo_id,user_id,author,body,comment_date) VALUES ('".$database->escape_the_string($this->photo_id)."','".$database->escape_the_string($this->user_id)."','".$database->escape_the_string($this->author)."' ,'".$database->escape_the_string($this->body)."' ,NOW())";
+        
+        $the_result = $database->myquery($sql);
+
+
+
+        if($the_result){
+
+        	$this->id = $database->the_insert_id();
+
+        	return true;
+        }
+        else{
+
+        	return false;
+        }
+    }
+
+
 
     public function update(){
 
     	global $database;
 
-    	$sql = "UPDATE " .static::$db_table. " SET username = '".$database->escape_the_string($this->username)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."' WHERE id  = '".$database->escape_the_string($this->id)."'";
+    	$sql = "UPDATE " .static::$db_table. " SET username = '".$database->escape_the_string($this->username)."', email = '".$database->escape_the_string($this->email)."', password = '".$database->escape_the_string($this->password)."', first_name = '".$database->escape_the_string($this->first_name)."',last_name = '".$database->escape_the_string($this->last_name)."',user_image = '".$database->escape_the_string($this->user_image)."' WHERE id  = '".$database->escape_the_string($this->id)."'";
 
     	$database->myquery($sql);
 
@@ -187,6 +232,106 @@ class Db_object {
 
         return isset($this->id) ? $this->update() : $this->create();
     }
+
+
+   public static function time_elapsed_string($datetime, $full = false) {
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+
+
+
+  public static function timeAgo($time_ago)
+{
+    $time_ago = strtotime($time_ago);
+    $cur_time   = time();
+    $time_elapsed   = $cur_time - $time_ago;
+    $seconds    = $time_elapsed ;
+    $minutes    = round($time_elapsed / 60 );
+    $hours      = round($time_elapsed / 3600);
+    $days       = round($time_elapsed / 86400 );
+    $weeks      = round($time_elapsed / 604800);
+    $months     = round($time_elapsed / 2600640 );
+    $years      = round($time_elapsed / 31207680 );
+    // Seconds
+    if($seconds <= 60){
+        return "just now";
+    }
+    //Minutes
+    else if($minutes <=60){
+        if($minutes==1){
+            return "one minute ago";
+        }
+        else{
+            return "$minutes minutes ago";
+        }
+    }
+    //Hours
+    else if($hours <=24){
+        if($hours==1){
+            return "an hour ago";
+        }else{
+            return "$hours hrs ago";
+        }
+    }
+    //Days
+    else if($days <= 7){
+        if($days==1){
+            return "yesterday";
+        }else{
+            return "$days days ago";
+        }
+    }
+    //Weeks
+    else if($weeks <= 4.3){
+        if($weeks==1){
+            return "a week ago";
+        }else{
+            return "$weeks weeks ago";
+        }
+    }
+    //Months
+    else if($months <=12){
+        if($months==1){
+            return "a month ago";
+        }else{
+            return "$months months ago";
+        }
+    }
+    //Years
+    else{
+        if($years==1){
+            return "one year ago";
+        }else{
+            return "$years years ago";
+        }
+    }
+}
 
 
     

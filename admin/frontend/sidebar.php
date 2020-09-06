@@ -9,8 +9,12 @@
         <li>
             <a href="index.php?upload"><i class="fa fa-fw fa-table"></i>Uploads</a>
         </li>
-        <li>
+        <!-- <li>
             <a href="index.php?comments"><i class="fa fa-fw fa-edit"></i>Comments</a>
+        </li> -->
+
+        <li>
+            <a href="#"><i class="fa fa-fw fa-edit"></i>Comments</a>
         </li>
 
         <li>

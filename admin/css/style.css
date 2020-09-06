@@ -58,5 +58,17 @@ padding: 10px;
 
 .the_img{
 
-	width: 40%;
+	width: 100%;
+  
+}
+
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.user_image{
+
+  width: 40% !important;
 }

@@ -22,6 +22,9 @@
                 <li>
                     <a href="/oop/admin/index.php">Admin</a>
                 </li>
+                <li>
+                    <a href="/oop/logout.php">Logout</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
