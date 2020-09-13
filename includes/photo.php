@@ -1,6 +1,6 @@
 <?php
 
-// include "db_object.php"; 
+include "db_object.php"; 
 
 class Photo extends Db_object{
 

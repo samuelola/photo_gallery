@@ -59,6 +59,12 @@
                      include 'backend/delete_user.php';
                  }
 
+                 if(isset($_GET['delete_comment'])){
+
+                     include 'backend/delete_comment.php';
+                 }
+            
+
 
 
              ?>

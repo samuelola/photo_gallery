@@ -98,7 +98,7 @@ if(isset($_POST['update'])){
                        <div class="info-box-delete pull-left">
                            
                            <?php
-                         echo "<a onClick=\"javascript: return confirm('do you want to delete?')\" href='backend/delete_photo.php?delete_photo=<?php echo $photo->id ?>' class='btn btn-danger btn-lg '>Delete</a>";
+                         echo "<a onClick=\"javascript: return confirm('Do you want to delete?')\" href='backend/delete_photo.php?delete_photo=$photo->id' class='btn btn-danger btn-lg '>Delete</a>";
                            ?>   
                        </div>
                        <div class="info-box-update pull-right ">

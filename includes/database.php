@@ -54,11 +54,7 @@ class Database{
 		return $this->conn->insert_id;
 	}
 
-	public function check_for_rows(){
-
-		return $this->conn->num_rows;
-	}
-
+	
 	
 
 }

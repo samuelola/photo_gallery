@@ -148,7 +148,7 @@ class Db_object {
       move_uploaded_file( $this->tmp_path,"../images/$this->filename");
    
 
-    $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size,caption) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."','".$database->escape_the_string($this->caption)."')";
+    $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size,caption) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."','".$database->escape_the_string($this->caption)."' ,NOW())";
         
         $the_result = $database->myquery($sql);
 
@@ -233,107 +233,39 @@ class Db_object {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
+    public static function date_for_comment($fing){
 
-   public static function time_elapsed_string($datetime, $full = false) {
-        $now = new DateTime;
-        $ago = new DateTime($datetime);
-        $diff = $now->diff($ago);
-
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
-
-        $string = array(
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        );
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-            } else {
-                unset($string[$k]);
-            }
-        }
-
-        if (!$full) $string = array_slice($string, 0, 1);
-        return $string ? implode(', ', $string) . ' ago' : 'just now';
+         $date = new DateTime($fing);
+         echo $date->format('M j Y | h:i:s A');
     }
 
 
 
+   public static function count_all(){
 
-  public static function timeAgo($time_ago)
-{
-    $time_ago = strtotime($time_ago);
-    $cur_time   = time();
-    $time_elapsed   = $cur_time - $time_ago;
-    $seconds    = $time_elapsed ;
-    $minutes    = round($time_elapsed / 60 );
-    $hours      = round($time_elapsed / 3600);
-    $days       = round($time_elapsed / 86400 );
-    $weeks      = round($time_elapsed / 604800);
-    $months     = round($time_elapsed / 2600640 );
-    $years      = round($time_elapsed / 31207680 );
-    // Seconds
-    if($seconds <= 60){
-        return "just now";
-    }
-    //Minutes
-    else if($minutes <=60){
-        if($minutes==1){
-            return "one minute ago";
-        }
-        else{
-            return "$minutes minutes ago";
-        }
-    }
-    //Hours
-    else if($hours <=24){
-        if($hours==1){
-            return "an hour ago";
-        }else{
-            return "$hours hrs ago";
-        }
-    }
-    //Days
-    else if($days <= 7){
-        if($days==1){
-            return "yesterday";
-        }else{
-            return "$days days ago";
-        }
-    }
-    //Weeks
-    else if($weeks <= 4.3){
-        if($weeks==1){
-            return "a week ago";
-        }else{
-            return "$weeks weeks ago";
-        }
-    }
-    //Months
-    else if($months <=12){
-        if($months==1){
-            return "a month ago";
-        }else{
-            return "$months months ago";
-        }
-    }
-    //Years
-    else{
-        if($years==1){
-            return "one year ago";
-        }else{
-            return "$years years ago";
-        }
-    }
-}
+       global $database;
 
+       $sql = "SELECT * FROM " .static::$db_table. "";
 
+       $result = $database->myquery($sql);
+
+       $count = $result->num_rows;
+
+       return $count;
+   }
+
+   public static function count_comment($id){
+
+       global $database;
+
+       $sql = "SELECT * FROM " .static::$db_table. " WHERE photo_id = '$id' ";
+
+       $result = $database->myquery($sql);
+
+       $count = $result->num_rows;
+
+       return $count;
+   }
     
 
 }

@@ -1,8 +1,11 @@
 <?php 
-  ob_start();
   session_start();
-  include'includes/init.php';
-
+  // include'includes/init.php';
+  
+  include'includes/database.php';
+  include'includes/photo.php';
+  include'includes/user.php';
+  
 ?>
 
 <?php 

@@ -1,6 +1,6 @@
 <?php
 
-include "db_object.php"; 
+// include "db_object.php"; 
 
 class User extends Db_object{
 	

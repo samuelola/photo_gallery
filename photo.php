@@ -1,18 +1,22 @@
-<?php include 'includes/init.php' ?>
+<?php
+include'includes/photo.php';
+include'includes/comment.php';
+include'includes/database.php';
+include'includes/user.php';
+// include'./includes/db_object.php';
+ // include 'includes/init.php' 
+
+ ?>
 
 <?php
  $comment = new Comment();
-if(isset($_GET['id']) && isset($_GET['user_id'])){
+if(isset($_GET['id'])){
 
-  $id = $_GET['id'];
+  $photo_id = $_GET['id'];
 
-  $user_id = $_GET['user_id'];
-
-  $photo = Photo::find_by_id($id);
+  $photo = Photo::find_by_id($photo_id);
 
   $the_photo_id = $photo->id;
-
-  $user = User::find_by_id($user_id );
 
   if(isset($_POST['addcomment'])){
 
@@ -70,14 +74,11 @@ else{
         <div class="row">
 
             <?php 
-                       
-                
-                 $user = User::find_by_id( $user_id);
                  $photo = Photo::find_by_id($the_photo_id);
              ?>
 
             <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
 
                 <!-- Blog Post -->
 
@@ -95,7 +96,7 @@ else{
                 <!-- <hr> -->
 
                 <!-- Preview Image -->
-                  <img width="900" height="300" class="img-responsive" src="images/<?php echo $photo->filename ?>" alt="">
+                  <img width="100%"  class="img-responsive" src="images/<?php echo $photo->filename ?>" alt="">
 
                 <hr>
 
@@ -134,48 +135,59 @@ else{
             
                   <?php
 
-                  $sam_id = $_SESSION['user_id'];
+                  // if(isset($_SESSION['user_id'])){
 
-                   $comment_select_image = Comment::find_comment_by_id_user($sam_id);
+                  //    $sam_id = $_SESSION['user_id'];
 
-                   var_dump($comment_select_image);
+                  //     $comment_select = Comment::find_comment_by_id_user($sam_id);
 
-                   $comments = Comment::find_all(); 
+                     
 
+                  // }
 
-                   foreach ($comments as $comment) {
-                       
-                      ?>
+                   $comment = Comment::find_comment_by_id($photo_id); 
 
+                   $the_show_comment = Comment::count_comment($photo_id);
 
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="users/<?php echo  isset($comment_select_image->user_image) ? $comment_select_image->user_image : 'image' ?>" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><?php echo isset($comment->author) ? $comment->author : '' ?>
-                                    <small>
+                   if($the_show_comment >= 1){
+                     
+                     ?>
 
-                                        <?php
-                                          
-                                             $date = new DateTime($comment->comment_date);
-                                            echo $date->format('M j Y h:i:s A');
+                       <div class="media">
+                           <a class="pull-left" href="#">
+                              <!--  <img class="media-object" src="users/<?php echo  isset($comment_select_image->user_image) ? $comment_select_image->user_image : 'image' ?>" alt=""> -->
+                              <img class="media-object" src="images/co.png" alt="">
+                           </a>
+                           <div class="media-body">
+                               <h4 class="media-heading"><?php echo isset($comment->author) ? $comment->author : '' ?>
+                                   <small>
 
-
-                                         ?>
-                                            
-                                    </small>
-
-                                </h4>
-                               <?php echo $comment->body ?>
-                            </div>
-                            
-                        </div>
+                                       <?php
+                                         
+                                           Comment::date_for_comment($comment->comment_date );
 
 
+                                        ?>
+                                           
+                                   </small>
 
-                      <?php
+                               </h4>
+                              <?php echo $comment->body ?>
+                           </div>
+                           
+                       </div>
+
+                     <?php
+
                    }
+                   else{
+                    
+                   }
+                       
+                      
+
+
+                
 
                     ?>  
 
@@ -199,7 +211,7 @@ else{
 
             <!-- Blog Sidebar Widgets Column -->
             
-             <?php include'includes/sidebar.php' ?>
+            <!--  <?php include' includes/sidebar.php' ?> -->
 
         </div>
         <!-- /.row -->

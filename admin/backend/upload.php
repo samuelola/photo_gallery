@@ -47,6 +47,11 @@ if(isset($_POST['add_photo'])){
                     </div>
 
                      <div class="form-group">
+                         <label for="">Caption:</label>
+                        <input type="text" name="caption" class="form-control">
+                    </div>
+
+                     <div class="form-group">
                          <label for="">Photo:</label>
                         <input type="file" name="uploaded_file">
                     </div>

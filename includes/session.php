@@ -8,9 +8,12 @@ class Session{
 
   public $message;
 
+  public $count;
+
   function __construct(){
 
   	 $this->check_message();
+     $this->visitor_count();
   }
 
 
@@ -57,6 +60,19 @@ class Session{
 
   	 	$this->message = "";
   	 }
+  }
+
+
+  public function visitor_count(){
+
+      if(isset($_SESSION['count'])){
+
+         return $this->count = $_SESSION['count']++;
+      }
+      else{
+
+         return $_SESSION['count'] = 1;
+      }
   }
 
 

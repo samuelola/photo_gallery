@@ -1,8 +1,12 @@
 <?php 
 
   session_start();
-  include'../includes/init.php';
-
+  // include'../includes/init.php';
+  include'../includes/photo.php';
+  include'../includes/comment.php';
+  include'../includes/database.php';
+  include'../includes/session.php';
+  include'../includes/user.php';
 ?>
 
 <?php 
@@ -16,7 +20,7 @@
 
         
         header('Location:../login.php');
-}
+   }
 
 
  ?>
@@ -53,6 +57,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
 
 </head>
 

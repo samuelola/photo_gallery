@@ -14,7 +14,7 @@
         </li> -->
 
         <li>
-            <a href="#"><i class="fa fa-fw fa-edit"></i>Comments</a>
+            <a href="index.php?comments"><i class="fa fa-fw fa-edit"></i>Comments</a>
         </li>
 
         <li>

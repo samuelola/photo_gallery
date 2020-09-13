@@ -1,8 +1,5 @@
 <?php
 
-include'../../includes/init.php';
-
-
 if(isset($_GET['delete_user'])){
 
    $id = $_GET['delete_user'];
