@@ -24,9 +24,8 @@
                     <a href="/oop/admin/index.php">Admin</a>
                 </li>
 
-              <!--    <li>
-                    <a href="login.php">Login</a>
-                </li> -->
+
+                
                
                 <?php 
                   
@@ -39,6 +38,14 @@
                         </li>
                     
                       <?php  
+                   }
+                   else{
+
+                      ?>
+                            <li>
+                               <a href="login.php">Login</a>
+                           </li>
+                      <?php
                    }
 
                  ?>

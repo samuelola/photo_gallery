@@ -120,7 +120,7 @@ class Db_object {
 
     	global $database;
 
-    	 move_uploaded_file( $this->tmp_user_path,"../users/$this->user_image");
+    	 move_uploaded_file( $this->tmp_user_path,"../images/$this->user_image");
 
     $sql = "INSERT INTO " .static::$db_table. " (username,email,password,first_name,last_name,user_image) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->email)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."','".$database->escape_the_string($this->user_image)."')";
         
@@ -148,7 +148,7 @@ class Db_object {
       move_uploaded_file( $this->tmp_path,"../images/$this->filename");
    
 
-    $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size,caption) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."','".$database->escape_the_string($this->caption)."' ,NOW())";
+    $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size,caption,photo_date) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."','".$database->escape_the_string($this->caption)."' ,NOW())";
         
         $the_result = $database->myquery($sql);
 
@@ -236,7 +236,7 @@ class Db_object {
     public static function date_for_comment($fing){
 
          $date = new DateTime($fing);
-         echo $date->format('M j Y | h:i:s A');
+         echo $date->format('M j , Y | h:i A');
     }
 
 
@@ -265,6 +265,39 @@ class Db_object {
        $count = $result->num_rows;
 
        return $count;
+   }
+
+
+   public function ajax_add_photo($user_image,$user_id){
+      
+       global $database;
+
+       $this->id = $database->escape_the_string($user_id);
+       $this->user_image = $database->escape_the_string($user_image);
+      
+
+       $sql = "UPDATE ".static::$db_table." SET user_image = '".$this->user_image."' WHERE id = '".$this->id."'";
+
+       $database->myquery($sql);
+
+       return mysqli_affected_rows($database->conn) == 1 ? true : false;
+
+      
+   }
+
+   public static function sidebar_data($photo_id){
+
+       $photo = Photo::find_by_id($photo_id);
+
+       $output = "<a class='thumbnail' href='#'><img class='img-responsive' width='130' height='150' src='../images/$photo->filename' alt='image' ></a>";
+
+       $output.= "<p><b>Filename :</b> $photo->filename;</p>";
+
+       $output.= " <p><b>Type : </b> $photo->type</p>";
+
+       $output.= "<p><b>Size :</b> $photo->size</p>";
+
+       echo $output;
    }
     
 

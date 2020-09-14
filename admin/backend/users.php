@@ -3,7 +3,9 @@
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
+            <div class="text-center bg-success"><?php echo  $session->message ?></div>
             <h1 class="page-header">
+
                 Users <a href="index.php?add_user" class="btn btn-sm btn-info">Add User</a>
                 
             </h1>
@@ -36,11 +38,11 @@
                            ?>
                            <tr>
                              <td><?php echo $sn ?></td>
-                             <td><img class="user_image" width="100" height="100"  src="../users/<?php echo $user->user_image ?>" alt="image"></td>
+                             <td><img class="user_image" width="100" height="100"  src="../images/<?php echo $user->user_image ?>" alt="image"></td>
                              <td>
                                 <?php echo $user->username ?><br>
-                                <a class="del" href="backend/delete_user.php?delete_user=<?php echo $user->id ?>">Delete</a>
-                                <a href="index.php?edit_user&edit_user=<?php echo $user->id ?>">Edit</a>
+                                <a onclick="javascript: return confirm('Do you want to delete?')" class="del" href="backend/delete_user.php?delete_user=<?php echo $user->id ?>">Delete</a>
+                                <a href="index.php?edit_user=<?php echo $user->id ?>">Edit</a>
                                 <a href="#">View</a> 
                              </td>
                              <td><?php echo $user->first_name ?></td>

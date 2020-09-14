@@ -10,9 +10,12 @@ include'includes/user.php';
 
 <?php
  $comment = new Comment();
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && isset($_GET['user_id'])){
 
   $photo_id = $_GET['id'];
+  
+  $user_id = $_GET['user_id'];
+
 
   $photo = Photo::find_by_id($photo_id);
 
@@ -22,7 +25,7 @@ if(isset($_GET['id'])){
 
    $errors = [];
 
-    $comment->user_id = $user->id;
+    $comment->user_id = $user_id;
     $comment->photo_id = $the_photo_id;
 
     $comment->author = trim($_POST['comment_name']);
@@ -91,8 +94,8 @@ else{
                 <hr>
 
                 <!-- Date/Time -->
-               <!--  <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
- -->
+               <!--  <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p> -->
+                <p><span class="glyphicon glyphicon-time"></span> Posted on <?php Photo::date_for_comment($photo->photo_date) ?></p>
                 <!-- <hr> -->
 
                 <!-- Preview Image -->

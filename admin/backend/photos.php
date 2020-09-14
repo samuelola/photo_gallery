@@ -44,8 +44,8 @@
                                  <?php
                                   echo"<a onClick=\"javascript: return confirm('Do you want to delete?')\" class='del' href='backend/delete_photo.php?delete_photo=$photo->id'>Delete</a>";
                                   ?>
-                                  <a href="index.php?edit_photo&edit_photo=<?php echo $photo->id ?>">Edit</a>
-                                  <a href="../photo.php?id=<?php echo $photo->id ?>">View</a>
+                                  <a href="index.php?edit_photo=<?php echo $photo->id ?>">Edit</a>
+                                  <a href="../photo.php?id=<?php echo $photo->id  ?>&user_id=<?php echo $user_id ?> ">View</a>
                               </div>
                              </td>
                              <td><?php echo $photo->title ?></td>

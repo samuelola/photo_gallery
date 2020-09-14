@@ -6,6 +6,7 @@ include'../../includes/photo.php';
 include'../../includes/comment.php';
 include'../../includes/database.php';
 include'../../includes/user.php';
+include'../../includes/session.php';
 
 
 if(isset($_GET['delete_photo'])){

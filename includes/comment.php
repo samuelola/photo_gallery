@@ -8,7 +8,7 @@ class Comment extends Db_object{
     protected static $db_id = "id";
     public $id;
 	public $photo_id;
-	public $user_id;
+	// public $user_id;
 	public $author;
 	public $body;
     public $comment_date;

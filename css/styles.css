@@ -4,7 +4,19 @@
 	height: 150px !important;
 }
 
+
+
 .do{
 
 	width: 100% !important;
+}
+
+
+.pager .active > a, .pager li > span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: grey !important;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    color: #fff;
 }

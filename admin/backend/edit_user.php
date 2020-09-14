@@ -27,20 +27,27 @@ if(isset($_POST['update_user'])){
        $user->user_image = $the_image; 
    }
 
-   move_uploaded_file($user->tmp_user_path,"../users/$user->user_image");
+   move_uploaded_file($user->tmp_user_path,"../images/$user->user_image");
 
   
    if($user->update()){
 
-       $message = "<h3 class='text-danger text-center'>Photo Successfully updated!</h3>";
+       $session->message("User has been updated!");
    
     } 
 
    header('Location:index.php?users');
+
+  
    
 }
 
 ?>
+
+<!--photo modal -->
+
+<?php include "frontend/photo_modal.php" ?>
+
 
 <div class="container-fluid">
      
@@ -53,9 +60,9 @@ if(isset($_POST['update_user'])){
 
             </h1>
            
-           <div class="col-md-4">
+           <div class="col-md-4 user_image_box">
                
-             <img class="img-circle img-responsive" width="150" height="150" src="../users/<?php echo $user->user_image ?>" alt="image">
+             <a href="#" data-toggle="modal" data-target="#photo_library"><img class="img-thumbnail img-responsive" width="150" height="150" src="../images/<?php echo $user->user_image ?>" alt="image" ></a>
 
            </div>
 
@@ -99,7 +106,7 @@ if(isset($_POST['update_user'])){
 
                   <div class="form-group">
                        <input type="submit" name="update_user" value="Update" class="btn btn-sm btn-primary ">
-                      <a href="backend/delete_user.php?delete_user=<?php echo $user->id ?>" class="btn btn-sm btn-danger pull-right ">Delete</a>
+                      <a onclick="javascript: return confirm('Do you want to delete?')" id="user-id" href="backend/delete_user.php?delete_user=<?php echo $user->id ?>" class="btn btn-sm btn-danger pull-right ">Delete</a>
                      
                   </div>
 

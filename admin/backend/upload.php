@@ -37,7 +37,7 @@ if(isset($_POST['add_photo'])){
                 <small>Subheading</small>
             </h1>
             
-            <div class="col-md-6">
+            <div class="col-md-6 col-md-offset-3">
                 
                 <form action="" method="post" enctype="multipart/form-data">
                     

@@ -35,18 +35,9 @@ class Session{
   }
 
 
-  public function message ($msg =""){
+ 
 
-     if(!empty($msg)){
-         
-         $_SESSION['message'] = $msg;
-     }
-     else{
-
-     	return $this->message="";
-     }
-
-  }
+  // this is to check for messgaes
 
   private function check_message(){
 
@@ -60,6 +51,22 @@ class Session{
 
   	 	$this->message = "";
   	 }
+  }
+
+
+//  set and get the message;
+
+   public function message ($msg =""){
+
+     if(!empty($msg)){
+         
+         $_SESSION['message'] = $msg;
+     }
+     else{
+
+      return $this->message="";
+     }
+
   }
 
 
@@ -98,5 +105,6 @@ class Session{
 
 $session = new Session();
 
+// $message = $session->message();
 
  ?>

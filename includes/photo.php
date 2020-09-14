@@ -13,6 +13,7 @@ class Photo extends Db_object{
   	public $size;
     public $caption;
   	public $tmp_path;
+    public $photo_date;
     // public $custom_error = [];
     // public $upload_error = [
 

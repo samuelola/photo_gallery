@@ -71,6 +71,7 @@ if(isset($_GET['id'])){
                            ?>
                            
                        </tbody>
+                       <!-- <h2 class="text-center"></h2> -->
                   </table>
 
                   <?php
@@ -78,7 +79,7 @@ if(isset($_GET['id'])){
                  }
                  else{
 
-                    echo "<h2>No comment</h2>";
+                    echo "<h2 class='text-center'>No comment</h2>";
                  }
 
                  
