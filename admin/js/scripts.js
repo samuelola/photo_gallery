@@ -77,6 +77,19 @@ $("#set_user_image").click(function(){
 });
 
 
+/******photo sidebar functionality with javascript and jquery********/
+
+$(".info-box-header").click(function(){
+
+    $(".inside").slideToggle("fast");
+
+    $("#toggle").toggleClass("glyphicon-menu-down glyphicon, glyphicon-menu-up glyphicon");
+});
+
+
+
+
+
 tinymce.init({selector:'textarea'})
 
 });

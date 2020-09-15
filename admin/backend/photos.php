@@ -28,7 +28,7 @@
                         <?php
                       $user_id = $_SESSION['user_id'];
                         $photos = Photo::find_all();
-
+                        // $photos = User::find_by_id($user_id)->photos();
                         $sn = 0;
                         
                         foreach ($photos as $photo) {
@@ -41,9 +41,9 @@
                              <td><img width="100" height="100" src="../images/<?php echo $photo->filename ?>" alt="image">
                               
                               <div class="pictures_link">
-                                 <?php
-                                  echo"<a onClick=\"javascript: return confirm('Do you want to delete?')\" class='del' href='backend/delete_photo.php?delete_photo=$photo->id'>Delete</a>";
-                                  ?>
+                                 
+                                  <a onclick="javascript: return confirm('Do you want to delete?') " class="del" href="index.php?delete_photo=<?php echo $photo->id ?>">Delete</a>
+                                
                                   <a href="index.php?edit_photo=<?php echo $photo->id ?>">Edit</a>
                                   <a href="../photo.php?id=<?php echo $photo->id  ?>&user_id=<?php echo $user_id ?> ">View</a>
                               </div>

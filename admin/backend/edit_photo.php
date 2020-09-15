@@ -74,12 +74,12 @@ if(isset($_POST['update'])){
            <div class="col-md-4">
                    <div  class="photo-info-box">
                        <div class="info-box-header">
-                          <h4>Save <span id="toggle" class="glyphicon glyphicon-menu-up pull-right"></span></h4>
+                          <h4>Save <span id="toggle" class="glyphicon glyphicon-menu-down pull-right"></span></h4>
                        </div>
                       <div class="inside">
                      <div class="box-inner">
                         <p class="text">
-                          <span class="glyphicon glyphicon-calendar"></span> Uploaded on: April 22, 2030 @ 5:26
+                          <span class="glyphicon glyphicon-calendar"></span> <?php echo photo::date_for_comment($photo->photo_date) ?>
                          </p>
                          <p class="text ">
                            Photo Id: <span class="data photo_id_box"><?php echo $photo->id ?></span>

@@ -63,6 +63,11 @@
 
                      include 'backend/delete_comment.php';
                  }
+
+                 if(isset($_GET['profile'])){
+
+                     include 'backend/profile.php';
+                 }
             
 
 

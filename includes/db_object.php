@@ -299,6 +299,14 @@ class Db_object {
 
        echo $output;
    }
+
+
+   public function photos(){
+
+      return  Photo::find_this_query("SELECT * FROM photos WHERE user_id =".$this->id."");
+   }
+
+    
     
 
 }

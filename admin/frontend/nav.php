@@ -25,7 +25,7 @@
              <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    <a href="index.php?profile"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                <!--  <li>
                     <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>

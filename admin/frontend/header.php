@@ -47,7 +47,7 @@
 
     <link href="css/style.css" rel="stylesheet">
 
-     <link href="css/dropzone.min.css" rel="stylesheet">
+     <link href="css/dropzone.css" rel="stylesheet">
 
     <link href="css/136_modal_photo.css" rel="stylesheet">
 
