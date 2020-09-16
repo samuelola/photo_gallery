@@ -4,7 +4,7 @@ if(isset($_GET['edit_photo'])){
   
    $id = $_GET['edit_photo'];
 
-   $photo = Photo::find_by_id($id);
+  
 }
 
 $message = "";
@@ -31,6 +31,9 @@ if(isset($_POST['update'])){
 
 ?>
 
+<?php include "frontend/the_photo_modal.php" ?>
+
+
 <div class="container-fluid">
      
     <!-- Page Heading -->
@@ -41,28 +44,28 @@ if(isset($_POST['update'])){
                
 
             </h1>
-           
+           <?php  $the_photo = Photo::find_by_id($id); ?>
            <div class="col-md-8">
                
                <form action="" method="post" enctype="multipart/form-data">
                    
                    <div class="form-group">
                       <label for="">Title:</label>
-                       <input type="text" name="title" class="form-control" value="<?php echo $photo->title ?>">
+                       <input type="text" name="title" class="form-control" value="<?php echo $the_photo->title ?>">
                    </div>
 
-                   <div class="form-group">
-                      <a class="photo_image"  href=""><img style="width: 100%" class="thumbnail" src="../images/<?php echo $photo->filename ?>" alt=""></a>
+                   <div class="form-group" id="image_box">
+                      <a class="photo_image"  href="#" data-toggle="modal" data-target="#the_photo_library"><img style="width: 100%" class="thumbnail" src="../images/<?php echo $the_photo->filename ?>" alt=""></a>
                    </div>
                    
                     <div class="form-group">
                       <label for="">Caption:</label>
-                       <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption ?>">
+                       <input type="text" name="caption" class="form-control" value="<?php echo $the_photo->caption ?>">
                    </div>
 
 
                    <div class="form-group">
-                       <textarea name="description" id="" cols="30" rows="10" spellcheck="false" class="form-control"><?php echo $photo->description ?></textarea>
+                       <textarea name="description" id="" cols="30" rows="10" spellcheck="false" class="form-control"><?php echo $the_photo->description ?></textarea>
                    </div>
 
                   
@@ -74,6 +77,7 @@ if(isset($_POST['update'])){
            <div class="col-md-4">
                    <div  class="photo-info-box">
                        <div class="info-box-header">
+
                           <h4>Save <span id="toggle" class="glyphicon glyphicon-menu-down pull-right"></span></h4>
                        </div>
                       <div class="inside">
@@ -82,24 +86,24 @@ if(isset($_POST['update'])){
                           <span class="glyphicon glyphicon-calendar"></span> <?php echo photo::date_for_comment($photo->photo_date) ?>
                          </p>
                          <p class="text ">
-                           Photo Id: <span class="data photo_id_box"><?php echo $photo->id ?></span>
+                           Photo Id: <span class="data photo_id_box"><?php echo $the_photo->id ?></span>
                          </p>
                          <p class="text">
-                           Filename: <span class="data"><?php echo $photo->filename ?></span>
+                           Filename: <span class="data"><?php echo $the_photo->filename ?></span>
                          </p>
                         <p class="text">
-                         File Type: <span class="data"><?php echo $photo->type ?></span>
+                         File Type: <span class="data"><?php echo $the_photo->type ?></span>
                         </p>
                         <p class="text">
-                          File Size: <span class="data"><?php echo $photo->size ?></span>
+                          File Size: <span class="data"><?php echo $the_photo->size ?></span>
                         </p>
                      </div>
                      <div class="info-box-footer clearfix">
                        <div class="info-box-delete pull-left">
                            
-                           <?php
-                         echo "<a onClick=\"javascript: return confirm('Do you want to delete?')\" href='backend/delete_photo.php?delete_photo=$photo->id' class='btn btn-danger btn-lg '>Delete</a>";
-                           ?>   
+                          
+                         <a id="photo-id" onClick="javascript: return confirm('Do you want to delete?')" href="backend/delete_photo.php?delete_photo=<?php echo $the_photo->id ?>" class="btn btn-danger btn-lg">Delete</a>
+                           
                        </div>
                        <div class="info-box-update pull-right ">
                            <input type="submit" name="update" value="Update" class="btn btn-primary btn-lg ">

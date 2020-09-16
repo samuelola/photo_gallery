@@ -120,7 +120,7 @@ class Db_object {
 
     	global $database;
 
-    	 move_uploaded_file( $this->tmp_user_path,"../images/$this->user_image");
+    	 move_uploaded_file( $this->tmp_user_path,"../users/$this->user_image");
 
     $sql = "INSERT INTO " .static::$db_table. " (username,email,password,first_name,last_name,user_image) VALUES ('".$database->escape_the_string($this->username)."','".$database->escape_the_string($this->email)."','".$database->escape_the_string($this->password)."','".$database->escape_the_string($this->first_name)."','".$database->escape_the_string($this->last_name)."','".$database->escape_the_string($this->user_image)."')";
         
@@ -139,13 +139,13 @@ class Db_object {
     }
 
 
-      public function create_photo(){
+    public function create_photo(){
 
     	global $database;
 
 
 
-      move_uploaded_file( $this->tmp_path,"../images/$this->filename");
+      move_uploaded_file($this->tmp_path,"../images/$this->filename");
    
 
     $sql = "INSERT INTO " .static::$db_table. " (title,description,filename,type,size,caption,photo_date) VALUES ('".$database->escape_the_string($this->title)."','".$database->escape_the_string($this->description)."','".$database->escape_the_string($this->filename)."','".$database->escape_the_string($this->type)."', '".$database->escape_the_string($this->size)."','".$database->escape_the_string($this->caption)."' ,NOW())";
@@ -268,7 +268,25 @@ class Db_object {
    }
 
 
-   public function ajax_add_photo($user_image,$user_id){
+   public function ajax_add_photo($photo_image,$photo_id){
+      
+       global $database;
+
+       $this->id = $database->escape_the_string($photo_id);
+       $this->filename = $database->escape_the_string($photo_image);
+      
+
+       $sql = "UPDATE ".static::$db_table." SET filename = '".$this->filename."' WHERE id = '".$this->id."'";
+
+       $database->myquery($sql);
+
+       return mysqli_affected_rows($database->conn) == 1 ? true : false;
+
+      
+   }
+
+
+   public function ajax_add_user_photo($user_image,$user_id){
       
        global $database;
 

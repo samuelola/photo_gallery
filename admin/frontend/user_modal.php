@@ -1,0 +1,48 @@
+<?php 
+
+$all_users_photos = User::find_all();
+
+
+ ?>
+
+<div class="modal fade" id="photo_library">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Gallery System Library</h4>
+      </div>
+      <div class="modal-body">
+          <div class="col-md-9">
+             <div class="thumbnails row">
+            
+                <!-- PHP LOOP HERE CODE HERE-->
+
+                <?php foreach($all_users_photos as $userr): ?>
+                
+               <div class="col-xs-2">
+                 <a role="checkbox" aria-checked="false" tabindex="0" id="" href="#" class="thumbnail">
+                   <img class="modal_thumbnailss img-responsive" src="../users/<?php echo $userr->user_image ?>" data="<?php echo $userr->id ?>">
+                 </a>
+                  <div class="photo-id hidden"></div>
+               </div>
+                <?php endforeach; ?>
+                    <!-- PHP LOOP HERE CODE HERE-->
+
+             </div>
+          </div><!--col-md-9 -->
+
+  <div class="col-md-3">
+    <div id="modal_sidebar"></div>
+  </div>
+
+   </div><!--Modal Body-->
+      <div class="modal-footer">
+        <div class="row">
+               <!--Closes Modal-->
+              <button id="set_user_imagee" type="button" class="btn btn-primary" disabled="false" data-dismiss="modal">Apply Selection</button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -38,12 +38,12 @@
                            ?>
                            <tr>
                              <td><?php echo $sn ?></td>
-                             <td><img class="user_image" width="100" height="100"  src="../images/<?php echo $user->user_image ?>" alt="image"></td>
+                             <td><img class="user_image" width="100" height="100"  src="../users/<?php echo $user->user_image ?>" alt="image"></td>
                              <td>
                                 <?php echo $user->username ?><br>
                                 <a onclick="javascript: return confirm('Do you want to delete?')" class="del" href="backend/delete_user.php?delete_user=<?php echo $user->id ?>">Delete</a>
                                 <a href="index.php?edit_user=<?php echo $user->id ?>">Edit</a>
-                                <a href="#">View</a> 
+                                <!-- <a href="#">View</a>  -->
                              </td>
                              <td><?php echo $user->first_name ?></td>
                              <td><?php echo $user->last_name ?></td>

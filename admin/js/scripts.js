@@ -10,9 +10,9 @@ var image_href_splitted;
 
 var photo_id;	
 
-$(".modal_thumbnails").click(function(){
+$(".modal_thumbnailss").click(function(){
 
-	$("#set_user_image").prop('disabled',false);
+	$("#set_user_imagee").prop('disabled',false);
 
 	user_href = $("#user-id").prop('href');
 
@@ -26,65 +26,68 @@ $(".modal_thumbnails").click(function(){
 
     image_name =   image_href_splitted[image_href_splitted.length-1];
 
-   
-    photo_id = $(this).attr("data");
 
+    $("#set_user_imagee").click(function(){
 
-    $.ajax({
+     $.ajax({
 
-        url:"../includes/ajax_code.php",
-        method: "POST",
-        data : {photo_id:photo_id},
-        success:function(data){
+       url:"../includes/ajax_user_code.php",
+       data : {image_name:image_name,user_id:user_id},
+       type: "POST",
+       success:function(data){
 
-          if(!data.error){
-             
-              $('#modal_sidebar').html(data);
-          }
-           
-           
-        } 
+           if(!data.error){
+               
+               // location.reload(true);
+
+               // alert(data);
+
+               $('.user_image_box a img').prop('src','../users/'+ image_name);
+           }
+       }
+
+     });
+
+     
 
     });
 
+   
+    // photo_id = $(this).attr("data");
 
-});
 
+    // $.ajax({
 
-$("#set_user_image").click(function(){
+    //     url:"../includes/ajax_user_code.php",
+    //     method: "POST",
+    //     data : {photo_id:photo_id},
+    //     success:function(data){
 
- $.ajax({
-
-   url:"../includes/ajax_code.php",
-   data : {image_name:image_name,user_id:user_id},
-   type: "POST",
-   success:function(data){
-
-   	   if(!data.error){
+    //       if(!data.error){
+             
+    //           $('#modal_sidebar').html(data);
+    //       }
            
-           // location.reload(true);
+           
+    //     } 
 
-           // alert(data);
-
-           $('.user_image_box a img').prop('src','../images/'+ image_name);
-   	   }
-   }
-
- });
-
+    // });
 
 
 });
+
+
+
 
 
 /******photo sidebar functionality with javascript and jquery********/
 
-$(".info-box-header").click(function(){
+// $(".info-box-header").click(function(){
 
-    $(".inside").slideToggle("fast");
+//     $(".inside").slideToggle("fast");
 
-    $("#toggle").toggleClass("glyphicon-menu-down glyphicon, glyphicon-menu-up glyphicon");
-});
+//     $("#toggle").toggleClass("glyphicon-menu-down glyphicon, glyphicon-menu-up glyphicon");
+// });
 
 
 

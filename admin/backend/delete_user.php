@@ -13,7 +13,7 @@ if(isset($_GET['delete_user'])){
 
    $user = User::find_by_id($id);
 
-   unlink('../../images/'.$user->user_image);
+   unlink('../../users/'.$user->user_image);
 
    $user->delete();
 

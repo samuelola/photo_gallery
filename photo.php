@@ -1,4 +1,5 @@
 <?php
+session_start();
 include'includes/photo.php';
 include'includes/comment.php';
 include'includes/database.php';

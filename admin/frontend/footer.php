@@ -7,9 +7,11 @@
 
      <script src="js/dropzone.js"></script>
 
-    <script src="js/scripts.js"></script>
+ 
 
-   
+    <script src="js/photo_gallery.js"></script>
+
+    
 
    <script src="js/Chart.min.js"></script>
 

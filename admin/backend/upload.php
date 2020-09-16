@@ -4,25 +4,25 @@
 
  $message = "";
 
+$photo_op = new Photo();
+
 if(isset($_FILES['file'])){
 
-
-   $photo = new Photo();
-
-    $photo->title = $_POST['title'];
-    $photo->description = $_POST['description'];
-    $photo->caption = $_POST['caption'];
-    $photo->filename = $_FILES['file']['name'];
-    $photo->tmp_path = $_FILES['file']['tmp_name'];
-    $photo->type = $_FILES['file']['type'];
-    $photo->size = $_FILES['file']['size'];
+    $photo_op->title = $_POST['title'];
+    $photo_op->description = $_POST['description'];
+    $photo_op->caption = $_POST['caption'];
+    $photo_op->filename = $_FILES['file']['name'];
+    $photo_op->tmp_path = $_FILES['file']['tmp_name'];
+    $photo_op->type = $_FILES['file']['type'];
+    $photo_op->size = $_FILES['file']['size'];
 
 
-    if($photo->create_photo()){
+    if($photo_op->create_photo()){
 
        $message = "Photo Successfully created!";
 
-    } 
+    }
+    
 
 }
 

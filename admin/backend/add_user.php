@@ -4,7 +4,7 @@
 
  $message = "";
 
-if(isset($_POST['add_user'])){
+if(isset($_FILES['file'])){
 
     $user = new User();
 
@@ -13,8 +13,8 @@ if(isset($_POST['add_user'])){
     $user->email = $_POST['email'];
     $user->password = $_POST['password'];
     $user->last_name = $_POST['lastname'];
-    $user->user_image = $_FILES['user_image']['name'];
-    $user->tmp_user_path = $_FILES['user_image']['tmp_name'];
+    $user->user_image = $_FILES['file']['name'];
+    $user->tmp_user_path = $_FILES['file']['tmp_name'];
     
 
 
@@ -72,7 +72,7 @@ if(isset($_POST['add_user'])){
 
                      <div class="form-group">
                          <label for="">Photo:</label>
-                        <input type="file" name="user_image">
+                        <input type="file" name="file">
                     </div>
 
 
@@ -89,5 +89,17 @@ if(isset($_POST['add_user'])){
         </div>
     </div>
     <!-- /.row -->
+
+
+     <!--  <div class="row">
+                    
+        <div class="col-lg-12">
+            <form action="index.php?add_user"  class="dropzone" >
+                
+            </form>
+        </div>
+
+    </div> -->
+
 
 </div>
