@@ -1,9 +1,12 @@
+       
+
+     <div class="container">
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
                     <!-- <p class="text-center">Copyright &copy; Your Website 2014</p> -->
-                     <p class="text-center">&copy; <?php echo date("Y") ?> Car Gallery. All Rights Reserved | Powered by Samwebtech </p>
+                     <p class="text-center">&copy; <?php echo date("Y") ?> Photo Gallery . All Rights Reserved | Powered by Samwebtech </p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -15,6 +18,8 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+
+    <script src="js/smoothbox.jquery2.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

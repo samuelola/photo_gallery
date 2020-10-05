@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>Photo Gallery System</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +18,8 @@
     <link href="css/blog-home.css" rel="stylesheet">
 
     <link href="css/styles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/smoothbox.css" type='text/css' media="all" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

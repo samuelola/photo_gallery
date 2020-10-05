@@ -14,12 +14,62 @@ session_start();
     <!-- Page Content -->
     <div class="container">
 
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-12">
+
+                 <div class="thumbnails row">
+               <?php 
+                $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+                $items_per_page = 8;
+                $item_total_count = Photo::count_all();
+
+                $paginate = new Paginate($page,$items_per_page,$item_total_count);
+
+                $sql = "SELECT * FROM photos ";
+                $sql .= "LIMIT {$items_per_page} ";
+                $sql .= "OFFSET {$paginate->offset()} ";
+
+                $photos = Photo::find_this_query($sql);
+
+                foreach ($photos as $photo) {
+                    
+                    ?>
+                      
+                     
+                          
+                          <div class="col-xs-6 col-md-3">
+                              <a class="thumbnail" href="photo.php?id=<?php echo $photo->id ?>">                
+                                  <img class=" img-responsive home_page_photo" src="images/<?php echo $photo->filename ?>" alt="">
+                              </a>
+                          </div>
+
+                      
+                      
+
+                    <?php
+                }
+
+
+               ?>
+
+               </div> 
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+
+            
+          
+
+        </div>
 
         <div class="row">
            
            <div class="agileits-services text-center py-5">
              <div class="container py-md-4 mt-md-3">
-               <h3 class="heading-agileinfo">PHOTO GALLERY <span></span></h3>
+               <h3 class="heading-agileinfo">GALLERY <span>Providing Higher Education</span></h3>
                <div class="w3ls_gallery_grids mt-md-5 pt-5">
                  <div class="row agileits_w3layouts_gallery_grid">
                   <?php
@@ -67,8 +117,6 @@ session_start();
 
         </div>
         <!-- /.row -->
-
-        
 
          <div class="row">
              

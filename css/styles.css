@@ -1,7 +1,18 @@
+html, body {
+    background: #f3f3f3;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
 .home_page_photo{
 
-	width: 200px !important;
-	height: 150px !important;
+ width: 500px !important;
+ height: 200px !important;
+}
+
+.thumbnail>img {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 
@@ -19,4 +30,112 @@
     border: 1px solid #ddd;
     border-radius: 15px;
     color: #fff;
+}
+
+.heading-agileinfo {
+    letter-spacing: 4px;
+    font-size: 40px;
+    text-align: center;
+    color: #eb1d50;
+    text-transform: uppercase;
+    position: relative;
+    margin-top: 0;
+}
+
+
+.heading-agileinfo span {
+    display: block;
+    font-size: 17px !important;
+    margin-top: 1em;
+    letter-spacing: 4px;
+    text-transform: capitalize;
+    color: #000000;
+    font-weight: 500;
+}
+
+.mt-md-5, .my-md-5 {
+    margin-top: 3rem !important;
+}
+
+.w3_agile_gallery_effect {
+    position: relative;
+
+}
+
+a.sb {
+    
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+a.sb img {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.hover14 figure {
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.home_page_photo1 {
+    width: 500px !important;
+    height: 200px !important;
+    margin-left: 0px;
+    
+}
+
+.hover14 figure::before {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    z-index: 2;
+    display: block;
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+    -webkit-transform: skewX(-17deg);
+    -moz-transform: skewX(-17deg);
+    -o-transform: skewX(-17deg);
+    -ms-transform: skewX(-17deg);
+    transform: skewX(-17deg);
+}
+
+.hover14 figure:hover::before {
+    -webkit-animation: shine .95s;
+    -moz-animation: shine .95s;
+    animation: shine .95s;
+}
+
+@-webkit-keyframes shine {
+    100% {
+        left: 125%;
+    }
+}
+
+@keyframes shine {
+    100% {
+        left: 125%;
+    }
 }

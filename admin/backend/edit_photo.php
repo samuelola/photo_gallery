@@ -13,19 +13,31 @@ if(isset($_POST['update'])){
 
    $id = $_GET['edit_photo'];
    $photo = Photo::find_by_id($id);
-
+   $the_image = $photo->filename;
    $photo->title = $_POST['title'];
    $photo->caption = $_POST['caption'];
    $photo->description = $_POST['description'];
+   $photo->filename = $_FILES['photo_image']['name'];
+   $photo->tmp_path = $_FILES['photo_image']['tmp_name'];
+   $photo->size = $_FILES['photo_image']['size'];
+   $photo->type = $_FILES['photo_image']['type'];
+
+   if(empty($photo->filename)){
+      
+      $photo->filename = $the_image;
+   }
+
+   move_uploaded_file($photo->tmp_path,"../images/$photo->filename");
+
    if($photo->update_photo()){
 
        $message = "<h3 class='text-danger text-center'>Photo Successfully updated!</h3>";
 
-       $_SESSION['msg'] = $message;
+      
 
     } 
 
-   header('Location:index.php?photos');
+   // header('Location:index.php?photos');
    
 }
 
@@ -39,6 +51,7 @@ if(isset($_POST['update'])){
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
+           <?php echo $message; ?>
             <h1 class="page-header">
                 Edit Photo
                
@@ -55,8 +68,14 @@ if(isset($_POST['update'])){
                    </div>
 
                    <div class="form-group" id="image_box">
+                      <label for="">Photo:</label>
                       <a class="photo_image"  href="#" data-toggle="modal" data-target="#the_photo_library"><img style="width: 100%" class="thumbnail" src="../images/<?php echo $the_photo->filename ?>" alt=""></a>
+
+                      <input type="file" name="photo_image">
+
                    </div>
+
+               
                    
                     <div class="form-group">
                       <label for="">Caption:</label>
@@ -67,6 +86,9 @@ if(isset($_POST['update'])){
                    <div class="form-group">
                        <textarea name="description" id="" cols="30" rows="10" spellcheck="false" class="form-control"><?php echo $the_photo->description ?></textarea>
                    </div>
+
+
+                  
 
                   
 

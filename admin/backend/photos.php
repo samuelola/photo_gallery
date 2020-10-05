@@ -49,8 +49,8 @@
                               </div>
                              </td>
                              <td><?php echo $photo->title ?></td>
-                             <td><?php echo $photo->description ?></td>
                              <td><?php echo $photo->caption ?></td>
+                             <td><?php echo $photo->description ?></td>  
                              <td><?php echo $photo->type ?></td>
                              <td><?php echo $photo->size ?></td>
                              <td>

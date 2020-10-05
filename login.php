@@ -94,10 +94,8 @@ else{
 
  											<input name="username" placeholder="Enter Username" type="text" class="form-control" name="username" value="<?php echo isset($username) ? $username : '' ?>"> 
                       
-
-                      <p class="text-danger"><?php echo isset($errors['username']) ? $errors['username'] : '' ?></p>
  										</div>
- 										
+ 										 <p class="text-danger"><?php echo isset($errors['username']) ? $errors['username'] : '' ?></p>
  									</div>
 
  									<div class="form-group">
@@ -114,9 +112,9 @@ else{
  										<input name="submit" class="btn btn-lg btn-primary btn-block" value="Login" type="submit">
  									</div>
 
-                                      <div class="form-group">
+                                     <!--  <div class="form-group">
                                       	  <a href="forgotpassword.php?forgot=<?php echo uniqid(true); ?>">Forgot Password</a>
-                                      </div>
+                                      </div> -->
  								</form>
 
  							</div><!-- Body-->

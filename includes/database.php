@@ -2,62 +2,58 @@
 
 class Database{
 
-	public $conn;
-	
+  public $conn;
 
-	function __construct(){
+  public function __construct(){
 
-		$this->open_db_connection();
-	}
+     $this->db_connection();
+  }
 
-	public function open_db_connection(){
+  public function db_connection(){
 
-		// $this->conn = mysqli_connect('localhost','root','','oop_gallery');
+    $this->conn = new mysqli('localhost','root','','oop_gallery');
 
-		$this->conn = new mysqli('localhost','root','','oop_gallery');
-
-
-		if($this->conn->error){
-           
-            die('Database not connected!'.$this->conn->error);
-		}
+    if(!$this->conn){
         
-	}
-
-	public function myquery($sql){
-
-        $result = $this->conn->query($sql);
-        
-        $this->confirm_the_query($result);
-        
-        return $result;
-	}
+        echo "database not connected!";
+    }
+     
+  }
 
 
-	private function confirm_the_query($result){
+  public function myquery($sql){
 
-       if(!$result){
-          
-          die('Query failed'.$this->conn->error);
-       }
+     $result = $this->conn->query($sql);
 
-	}
+     $this->confirm_all_query($result);
 
-	public function escape_the_string($string){
+     return $result;
 
-       return $this->conn->real_escape_string($string);
-	}
+  }
+
+  
+  private function confirm_all_query($result){
+
+      if(!$result){
+         
+         die("Query failed".$this->conn->error);
+      }
+  }
 
 
-	public function the_insert_id(){
+  public function escape_the_string($data){
 
-		return $this->conn->insert_id;
-	}
+     return $this->conn->real_escape_string($data);
+  }
 
-	
-	
+  public function the_last_id(){
+
+    return $this->conn->insert_id;
+  }
+  
 
 }
+
 
 $database = new Database;
 
